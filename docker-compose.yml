@@ -1,0 +1,18 @@
+version: "2"
+services:
+  project-mongo:
+    container_name: project-mongo
+    image: mongo
+    volumes:
+      - ./Backend/data:/data/db
+    ports:
+      - "27018:27017"
+  api:
+    container_name: app
+    restart: always
+    build: ./backend/
+    ports:
+      - "5000:3000"
+    command: ["/wait-for-it.sh", "project-mongo:27017","-t","30", "--", "npm" ,"start-prod"]
+    links:
+      - project-mongo
