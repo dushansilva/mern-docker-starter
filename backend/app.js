@@ -31,17 +31,17 @@ const config = require('./config');
 const isDevMode = process.env.NODE_ENV === 'development' || false;
 const isProdMode = process.env.NODE_ENV === 'production' || false;
 
-let mongoUrl = config.MONGO_DOCKER_URL;
-if (isDevMode) {
-    mongoUrl = config.MONGO_LOCAL_URL;
-}
-mongoose.connect(mongoUrl, config.MONGO_OPTIONS)
-    .then(() => {
-        console.log('Connected to Database');
-    }).catch((err) => {
-        console.log('Not Connected to Database ERROR! ', err);
-    });
-mongoose.Promise = global.Promise;
+// let mongoUrl = config.MONGO_DOCKER_URL;
+// if (isDevMode) {
+//     mongoUrl = config.MONGO_LOCAL_URL;
+// }
+// mongoose.connect(mongoUrl, config.MONGO_OPTIONS)
+//     .then(() => {
+//         console.log('Connected to Database');
+//     }).catch((err) => {
+//         console.log('Not Connected to Database ERROR! ', err);
+//     });
+// mongoose.Promise = global.Promise;
 
 // routes
 const userRoutes = require('./api/routes/user');

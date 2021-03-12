@@ -1,18 +1,15 @@
 version: "2"
 services:
-  project-mongo:
-    container_name: project-mongo
-    image: mongo
-    volumes:
-      - ./Backend/data:/data/db
+  mi:
+    container_name: mi
+    image: dushansilva/test:1.0
     ports:
-      - "27018:27017"
-  api:
-    container_name: app
+      - "8253:8253"
+      - "8290:8290"
+  backend1:
+    container_name: backend1
     restart: always
     build: ./backend/
     ports:
-      - "5000:3000"
-    command: ["/wait-for-it.sh", "project-mongo:27017","-t","30", "--", "npm" ,"start-prod"]
-    links:
-      - project-mongo
+      - "3000:3000"
+    command: ["npm" ,"run","start-dev"]
